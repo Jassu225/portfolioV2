@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2018",
+    "target": "es2020",
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@base/*": ["./src/components/base/*"],
       "@composite/*": ["./src/components/composite/*"],
+      "@container/*": ["./src/components/container/*"],
       "@constants/*": ["./src/constants/*"],
+      "@utils/*": ["./src/utils/*"],
       "@actions/*": ["./src/store/actions/*"],
-      "@selectors/*": ["./src/store/selectors/*"]
+      "@actionTypes/*": ["./src/store/actionTypes/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

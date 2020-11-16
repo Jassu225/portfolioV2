@@ -1,11 +1,19 @@
-import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createWrapper } from 'next-redux-wrapper';
-import reducer from './reducers';
+import rootReducer from './reducers';
+import { apiMiddleware } from './middlewares';
+
+const withMiddleWare = applyMiddleware(apiMiddleware);
+
+const withDevTools = process.env.isDev
+  ? composeWithDevTools(withMiddleWare)
+  : withMiddleWare;
 
 // create a makeStore function
-const makeStore = context => createStore(reducer, composeWithDevTools());
+const makeStore = () => createStore(rootReducer, withDevTools);
 
 // export an assembled wrapper
-export const wrapper = createWrapper(makeStore, { debug: true });
+const wrapper = createWrapper(makeStore, { debug: true });
 
+export default wrapper;

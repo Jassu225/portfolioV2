@@ -1,5 +1,6 @@
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import MetaTags from '@composite/MetaTags';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -10,6 +11,7 @@ export default class MyDocument extends Document {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
+            // eslint-disable-next-line react/jsx-props-no-spreading
             sheet.collectStyles(<App {...props} />)
         });
 
@@ -18,6 +20,7 @@ export default class MyDocument extends Document {
         ...initialProps,
         styles: (
           <>
+            <MetaTags />
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
