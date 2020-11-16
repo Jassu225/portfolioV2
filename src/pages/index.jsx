@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import Button from '@base/Button/Button';
+import Button from '@base/Button';
 
 const Main = styled.main`
   display: flex;
