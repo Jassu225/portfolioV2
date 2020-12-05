@@ -1,5 +1,7 @@
+import SkillSet from '@container/SkillSet/SkillSet';
+
 const RootPage = () => {
-  return null;
+  return <SkillSet />;
 };
 
 export default RootPage;

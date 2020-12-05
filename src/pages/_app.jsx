@@ -40,19 +40,24 @@ const App = ({ Component, pageProps, isServer, userAgent }) => {
   );
 };
 
-App.getInitialProps = async ({ ctx }) => {
+App.getInitialProps = async ({ ctx, ...rest }) => {
   const isServer = !!ctx.req;
   return {
     isServer,
-    userAgent: isServer ? ctx.req.headers['user-agent'] : ''
+    userAgent: isServer ? ctx.req.headers['user-agent'] : '',
+    ...rest
   };
 };
 
 App.propTypes = {
   Component: PropTypes.func.isRequired,
-  pageProps: PropTypes.objectOf(PropTypes.any).isRequired,
+  pageProps: PropTypes.objectOf(PropTypes.any),
   isServer: PropTypes.bool.isRequired,
   userAgent: PropTypes.string.isRequired
+};
+
+App.defaultProps = {
+  pageProps: {}
 };
 
 export default wrapper.withRedux(App);
